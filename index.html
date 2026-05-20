@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Excel脱出パック ｜ 増えすぎた顧客情報を、もう一度、使える形へ。</title>
+<meta name="description" content="A列からCV列まで伸びた顧客管理に、終わりを。Excel脱出パックは、増えた情報をひとつのマスタに集約し、見る人ごとに角度を分け直す「判断できる顧客台帳」を5万円から作るサービスです。" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+
+<!-- アイコン定義 -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Pain -->
+    <symbol id="i-duplicate" viewBox="0 0 24 24"><rect x="4" y="6" width="13" height="14" rx="1.5"/><rect x="7" y="3" width="13" height="14" rx="1.5"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M3 12h18"/><polyline points="16 7 21 12 16 17"/><polyline points="8 7 3 12 8 17"/></symbol>
+    <symbol id="i-question" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="14 3 14 9 20 9"/><path d="M10 13c0-1 .5-1.5 1.5-2 .8-.4 1.5-.9 1.5-2 0-1.1-.9-2-2-2s-2 .9-2 2"/><circle cx="11" cy="18" r=".5" fill="currentColor"/></symbol>
+    <symbol id="i-text-vary" viewBox="0 0 24 24"><path d="M5 19V7l3-3 3 3v12"/><path d="M5 13h6"/><path d="M14 19v-8l3-3 3 3v8"/><path d="M14 15h6"/></symbol>
+    <symbol id="i-overflow" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M3 8h18"/><path d="M9 21h6"/><path d="M12 17v4"/><path d="M16 12l3 3-3 3" stroke-width="1.2"/></symbol>
+    <symbol id="i-single-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></symbol>
+
+    <!-- Deliverable -->
+    <symbol id="i-ledger" viewBox="0 0 24 24"><path d="M5 4h12a2 2 0 0 1 2 2v14H7a2 2 0 0 1-2-2V4z"/><path d="M5 4v14a2 2 0 0 0 2 2"/><path d="M9 8h7"/><path d="M9 12h7"/><path d="M9 16h4"/></symbol>
+    <symbol id="i-form" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 10h6"/><path d="M7 14h10"/><circle cx="17" cy="10" r="1.2" fill="currentColor"/></symbol>
+    <symbol id="i-views" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></symbol>
+    <symbol id="i-dashboard" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="8" y1="17" x2="8" y2="11"/><line x1="12" y1="17" x2="12" y2="7"/><line x1="16" y1="17" x2="16" y2="14"/></symbol>
+
+    <!-- Pricing -->
+    <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M14.8 9.3c-.5-.7-1.4-1.3-2.8-1.3-1.7 0-3 .9-3 2.2s1.4 1.8 3 2.1 3 .8 3 2.1-1.3 2.2-3 2.2c-1.4 0-2.4-.6-2.8-1.3"/><line x1="12" y1="6" x2="12" y2="8"/><line x1="12" y1="16.5" x2="12" y2="18"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></symbol>
+    <symbol id="i-sheets" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1.5"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></symbol>
+
+    <!-- Fit -->
+    <symbol id="i-check-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="8 12 11 15 16 9"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="8" r=".7" fill="currentColor" stroke="none"/></symbol>
+
+    <!-- Industries -->
+    <symbol id="i-house" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 9v11h14V9"/><rect x="10" y="14" width="4" height="6"/></symbol>
+    <symbol id="i-building" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="1"/><line x1="9" y1="7" x2="9" y2="9"/><line x1="13" y1="7" x2="13" y2="9"/><line x1="9" y1="12" x2="9" y2="14"/><line x1="13" y1="12" x2="13" y2="14"/><path d="M10 21v-4h4v4"/></symbol>
+    <symbol id="i-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.6" y2="15.4"/><line x1="15" y1="15" x2="20" y2="20"/><line x1="8.6" y1="8.6" x2="12" y2="12"/></symbol>
+    <symbol id="i-medical" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><line x1="3" y1="11" x2="21" y2="11"/><line x1="12" y1="6" x2="12" y2="3"/><line x1="9" y1="3" x2="15" y2="3"/><line x1="12" y1="14" x2="12" y2="18"/><line x1="10" y1="16" x2="14" y2="16"/></symbol>
+    <symbol id="i-factory" viewBox="0 0 24 24"><path d="M3 21V11l5 3V11l5 3V8l8 5v8z"/><rect x="6" y="17" width="2" height="2"/><rect x="11" y="17" width="2" height="2"/><rect x="16" y="17" width="2" height="2"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4"/><line x1="12" y1="11" x2="12" y2="21"/></symbol>
+    <symbol id="i-scale" viewBox="0 0 24 24"><line x1="12" y1="3" x2="12" y2="21"/><line x1="6" y1="21" x2="18" y2="21"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M6 6l-3 7h6z"/><path d="M18 6l-3 7h6z"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1 3 2 6 2s6-1 6-2v-5"/><line x1="22" y1="9" x2="22" y2="13"/></symbol>
+    <symbol id="i-cup" viewBox="0 0 24 24"><path d="M5 5h12v9a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z"/><path d="M17 8h2a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-2"/><line x1="6" y1="22" x2="16" y2="22"/></symbol>
+    <symbol id="i-handshake" viewBox="0 0 24 24"><path d="M3 13l4-4 4 4"/><path d="M13 7l4 4-4 4"/><path d="M7 13l4 4 4-4"/><path d="M11 13l4-4"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><rect x="2" y="7" width="11" height="10" rx="1"/><path d="M13 10h5l3 4v3h-8z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+    <symbol id="i-dots" viewBox="0 0 24 24"><circle cx="6" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="18" cy="12" r="1.6" fill="currentColor"/></symbol>
+
+    <!-- Process -->
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 6h16v11H8l-4 4z"/><line x1="8" y1="11" x2="16" y2="11"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></symbol>
+    <symbol id="i-wand" viewBox="0 0 24 24"><path d="M3 21l9-9"/><path d="M14 4l3 3-7 7-3-3z"/><path d="M16 2l1 2 2 1-2 1-1 2-1-2-2-1 2-1z"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><polyline points="3 18 9 12 13 16 21 6"/><polyline points="15 6 21 6 21 12"/></symbol>
+    <symbol id="i-package" viewBox="0 0 24 24"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><polyline points="3 7 12 11 21 7"/><line x1="12" y1="11" x2="12" y2="21"/><polyline points="6 9 6 13"/></symbol>
+
+    <!-- Concept (NEW) -->
+    <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="2.5"/><path d="M4 5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5V5"/><path d="M4 11v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></symbol>
+    <symbol id="i-suit" viewBox="0 0 24 24"><circle cx="12" cy="7" r="3"/><path d="M5 21c0-3.5 3-6 7-6s7 2.5 7 6"/><path d="M9 13l3 3 3-3"/></symbol>
+    <symbol id="i-hardhat" viewBox="0 0 24 24"><path d="M4 18h16"/><path d="M5 18v-3c0-3 2-6 5-7"/><path d="M19 18v-3c0-3-2-6-5-7"/><rect x="10" y="6" width="4" height="3" rx="0.5"/><line x1="3" y1="20" x2="21" y2="20"/></symbol>
+    <symbol id="i-calculator" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><rect x="7" y="5" width="10" height="3"/><circle cx="9" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="9" cy="15" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="15" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="15" r="1" fill="currentColor" stroke="none"/><circle cx="9" cy="18" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="18" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="18" r="1" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><line x1="3" y1="13" x2="21" y2="13"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"/></symbol>
+
+    <!-- Misc -->
+    <symbol id="i-arrow-right" viewBox="0 0 24 24"><line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/></symbol>
+    <symbol id="i-arrow-down" viewBox="0 0 24 24"><line x1="12" y1="4" x2="12" y2="20"/><polyline points="6 14 12 20 18 14"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/></symbol>
+    <symbol id="i-warning" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><line x1="12" y1="10" x2="12" y2="15"/><circle cx="12" cy="18" r=".7" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-quote" viewBox="0 0 24 24"><path d="M7 7h4v4H7zM7 11c0 3 2 5 4 5"/><path d="M14 7h4v4h-4zM14 11c0 3 2 5 4 5"/></symbol>
+  </defs>
+</svg>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="brand-mark">カ</div>
+      <span>カタカタ - Excel脱出パック</span>
+    </div>
+    <a href="https://forms.gle/W4mCE1EjGZKtVBMx6" target="_blank" rel="noopener noreferrer" class="nav-cta">無料で相談する</a>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="wrap hero-inner">
+
+    <h1 class="reveal">
+      その顧客管理、<br>
+      <span class="accent">"見えているつもり"</span>では？
+    </h1>
+
+    <p class="hero-lede reveal">
+      列が増え、シートが増え、横スクロールが日常に。<br>
+      <span class="em">50行、K列を超えたあたりから、本当はもう全体は見えていません。</span><br><br>
+      カタカタ - Excel脱出パック<br>
+      増えすぎた顧客情報を、チームで使える顧客管理へ。
+    </p>
+
+    <div class="hero-cta-row reveal">
+      <a href="https://forms.gle/W4mCE1EjGZKtVBMx6" target="_blank" rel="noopener noreferrer" class="btn-primary">無料で相談してみる</a>
+      <div class="hero-price-tag">
+        <div><span class="price-num">¥50,000</span>から／〜150件まで定額<br>
+        以降150件ごとに+¥10,000</div>
+      </div>
+    </div>
+
+    <!-- BEFORE / AFTER -->
+    <div class="hero-visual reveal">
+      <div class="compare-grid">
+        <div class="compare-side before">
+          <div class="compare-head">
+            <span class="compare-badge">BEFORE</span>
+            <svg class="icon" style="color:var(--accent)"><use href="#i-warning"/></svg>
+          </div>
+          <h3 class="compare-title">"見えているつもり"の<br>Excel管理</h3>
+          <ul class="compare-list">
+            <li>50行を超えてスクロール地獄</li>
+            <li>同じ顧客情報が複数シートに重複</li>
+            <li>入力者によって書き方がバラバラ</li>
+            <li>「コピー(3)_最新.xlsx」が量産される</li>
+          </ul>
+        </div>
+        <div class="compare-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="12" x2="20" y2="12"/><polyline points="14 6 20 12 14 18"/>
+          </svg>
+        </div>
+        <div class="compare-side after">
+          <div class="compare-head">
+            <span class="compare-badge">AFTER</span>
+            <svg class="icon" style="color:var(--good)"><use href="#i-spark"/></svg>
+          </div>
+          <h3 class="compare-title">判断できる<br>顧客台帳</h3>
+          <ul class="compare-list">
+            <li>社長が10秒で状況判断できる</li>
+            <li>経営・現場・経理・営業で見る角度を分けられる</li>
+            <li>列が増えても、画面は散らからない</li>
+            <li>フォームから迷わず入力できる</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CONCEPT (NEW) ============== -->
+<section class="concept">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="num">01</span><span>WHY ／ なぜExcelで限界が来るのか</span></div>
+      <h2 class="section-title reveal">
+        列は増やせる。<br>
+        シートも増やせる。<br>
+        でも、<span class="accent">見える範囲は増やせない</span>。
+      </h2>
+      <p class="section-lede reveal">
+        列もシートも簡単に増やせる──Excelはそれが強みであり、弱みです。<br>
+        情報を<strong>増やす力</strong>はあっても、増えた情報を<strong>扱い続ける設計</strong>がないため、ある日を境に「見えているつもり」の管理表になります。
+      </p>
+    </div>
+
+    <!-- 二項対比 -->
+    <div class="contrast-grid reveal">
+      <div class="contrast-col contrast-bad">
+        <div class="contrast-label">BEFORE</div>
+        <h3>情報が増えるほど、<br>管理が<span class="em-bad">「重く」</span>なる。</h3>
+        <ul>
+          <li>横に伸びて、全体が見えなくなる</li>
+          <li>シートが分かれ、最新が分からなくなる</li>
+          <li>同じ顧客名が複数シートに散らばり、更新がズレる</li>
+          <li>結局、担当者しか触れない管理表になる</li>
+        </ul>
+      </div>
+      <div class="contrast-arrow">
+        <div class="arrow-box">
+          <svg class="icon" style="color:#fff"><use href="#i-arrow-right"/></svg>
+        </div>
+      </div>
+      <div class="contrast-col contrast-good">
+        <div class="contrast-label">AFTER</div>
+        <h3>情報が増えるほど、<br>判断の<span class="em-good">「切り口」</span>が増える。</h3>
+        <ul>
+          <li>顧客情報を、ひとつの台帳にまとめられる</li>
+          <li>見る目的ごとに、表示を切り替えられる</li>
+          <li>経営・現場・経理・営業で、見る内容を分けられる</li>
+          <li>情報が増えるほど、判断しやすくなる</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 中央タイトル -->
+    <div class="concept-sub-head reveal">
+      <h3>ひとつの顧客データベースを、<br><span class="accent">経営・現場・経理・営業　それぞれの見方へ</span>。</h3>
+    </div>
+
+    <!-- マスタ→ビュー視覚化 -->
+    <div class="concept-diagram reveal">
+      <div class="master-card">
+        <div class="master-icon">
+          <svg class="icon icon-lg"><use href="#i-database"/></svg>
+        </div>
+        <h4>すべての情報を集約</h4>
+        <div class="master-sub"> </div>
+        <div class="master-tags">
+          <span>顧客名</span><span>所在地</span><span>担当者</span><span>契約状況</span><span>履歴</span><span>メモ</span><span>...</span>
+        </div>
+      </div>
+
+      <div class="diagram-connector">
+        <span class="connector-label">同じ情報を、見る人ごとに切り替える</span>
+      </div>
+
+      <div class="views-grid">
+        <div class="view-card">
+          <div class="view-icon-wrap"><svg class="icon"><use href="#i-trend"/></svg></div>
+          <span class="view-role">FOR ／ 経営</span>
+          <h5>判断するための<br>数字だけ</h5>
+          <p>件数・進捗・要対応を、開いた瞬間に。</p>
+        </div>
+        <div class="view-card">
+          <div class="view-icon-wrap"><svg class="icon"><use href="#i-hardhat"/></svg></div>
+          <span class="view-role">FOR ／ 現場</span>
+          <h5>入力すべき<br>項目だけ</h5>
+          <p>動く顧客と、記録する内容だけを表示。</p>
+        </div>
+        <div class="view-card">
+          <div class="view-icon-wrap"><svg class="icon"><use href="#i-calculator"/></svg></div>
+          <span class="view-role">FOR ／ 経理</span>
+          <h5>確認すべき<br>顧客だけ</h5>
+          <p>請求・回収・対応待ちの案件を一覧で。</p>
+        </div>
+        <div class="view-card">
+          <div class="view-icon-wrap"><svg class="icon"><use href="#i-target"/></svg></div>
+          <span class="view-role">FOR ／ 営業</span>
+          <h5>次に動くべき<br>顧客だけ</h5>
+          <p>連絡予定・優先順位の高い顧客から並ぶ。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PAIN ============== -->
+<section class="pain">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="num">02</span><span>SIGNS ／ Excel管理が壊れているサイン</span></div>
+      <h2 class="section-title reveal">
+        ひとつでも当てはまれば、<br>
+        その管理表は<span class="accent">もう見えていません</span>。
+      </h2>
+      <p class="section-lede reveal">
+        Excelの限界は、ある日突然来るのではなく、<strong>気づかないうちに進行</strong>します。次のサインは、その典型です。
+      </p>
+    </div>
+
+    <div class="pain-grid reveal">
+      <div class="pain-card">
+        <div class="pain-icon-wrap"><svg class="icon"><use href="#i-duplicate"/></svg></div>
+        <div class="pain-num">SIGN — 01</div>
+        <h3 class="pain-title">同じ情報が<br>複数シートに重複</h3>
+        <p class="pain-body">「顧客一覧」「契約管理」「請求先」に、同じ顧客名が散らばっている。当然、どこかが古いまま。</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon-wrap"><svg class="icon"><use href="#i-expand"/></svg></div>
+        <div class="pain-num">SIGN — 02</div>
+        <h3 class="pain-title">列を足す運用が<br>止まらない</h3>
+        <p class="pain-body">情報が増えるたびに列を追加。気づけば“整理”ではなく“継ぎ足し”で延命されている状態。</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon-wrap"><svg class="icon"><use href="#i-question"/></svg></div>
+        <div class="pain-num">SIGN — 03</div>
+        <h3 class="pain-title">最新版が<br>どれか分からない</h3>
+        <p class="pain-body">「顧客リスト_最新.xlsx」「最終.xlsx」「本当の最終.xlsx」──覚えがありませんか。</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon-wrap"><svg class="icon"><use href="#i-text-vary"/></svg></div>
+        <div class="pain-num">SIGN — 04</div>
+        <h3 class="pain-title">入力者によって<br>書き方が違う</h3>
+        <p class="pain-body">「東京都」と「東京」、「(株)」と「株式会社」が混在。あとから検索や集計をかけても拾えない。</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon-wrap"><svg class="icon"><use href="#i-overflow"/></svg></div>
+        <div class="pain-num">SIGN — 05</div>
+        <h3 class="pain-title">1画面で全体を<br>把握できない</h3>
+        <p class="pain-body">50行を超えてスクロールが日常。<br>K列を超えて、全体を一望できない。</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon-wrap"><svg class="icon"><use href="#i-single-user"/></svg></div>
+        <div class="pain-num">SIGN — 06</div>
+        <h3 class="pain-title">担当者しか<br>更新できない</h3>
+        <p class="pain-body">「あの人がいないと最新が分からない」。退職や休みでビジネスが止まる、典型的な属人化サイン。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== DELIVERABLES ============== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="num">03</span><span>DELIVERABLES ／ 5万円の納品物</span></div>
+      <h2 class="section-title reveal">
+        運用が始まる状態で、<br>
+        <span class="accent">3つの納品物</span>をお渡しします。
+      </h2>
+      <p class="section-lede reveal">
+        お預かりしたExcelを整理し直し、<br>「ひとつのマスタ＋見る人別のビュー」という形で、明日から動かせる状態でお渡しします。
+      </p>
+    </div>
+
+    <div class="deliv-grid">
+
+      <div class="deliv-card reveal">
+        <div class="deliv-head">
+          <div class="deliv-num">01</div>
+          <div class="deliv-icon-wrap"><svg class="icon icon-lg"><use href="#i-form"/></svg></div>
+        </div>
+        <h3 class="deliv-title">迷わず入力できる<br>登録フォーム</h3>
+        <p class="deliv-body">新しい顧客や案件を追加するための、誰でも使える入力フォームを1つ用意。選択肢を整えてあるので、表記ゆれも起きません。</p>
+        <div class="deliv-tags">
+          <span class="deliv-tag">入力テンプレ</span>
+          <span class="deliv-tag">選択肢設定</span>
+          <span class="deliv-tag">入力ルール</span>
+        </div>
+      </div>
+
+      <div class="deliv-card reveal">
+        <div class="deliv-head">
+          <div class="deliv-num">02</div>
+          <div class="deliv-icon-wrap"><svg class="icon icon-lg"><use href="#i-views"/></svg></div>
+        </div>
+        <h3 class="deliv-title">見る人別の<br>ビュー 3〜5種</h3>
+        <p class="deliv-body">経営用・現場用・経理用・営業用など、<strong>見る人と目的に応じて分け直したビュー</strong>を3〜5個ご用意。フィルタを毎回かけ直す必要がなくなります。</p>
+        <div class="deliv-tags">
+          <span class="deliv-tag">経営用</span>
+          <span class="deliv-tag">現場用</span>
+          <span class="deliv-tag">経理用</span>
+          <span class="deliv-tag">営業用</span>
+        </div>
+      </div>
+
+      <div class="deliv-card reveal">
+        <div class="deliv-head">
+          <div class="deliv-num">03</div>
+          <div class="deliv-icon-wrap"><svg class="icon icon-lg"><use href="#i-dashboard"/></svg></div>
+        </div>
+        <h3 class="deliv-title">10秒で判断できる<br>KPIダッシュボード</h3>
+        <p class="deliv-body">「契約中は何件か」「要対応は何件か」を、画面を開いた瞬間に把握できる集計ビューを1〜2個ご用意します。</p>
+        <div class="deliv-tags">
+          <span class="deliv-tag">件数集計</span>
+          <span class="deliv-tag">要対応一覧</span>
+          <span class="deliv-tag">分布</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PRICING ============== -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="num">04</span><span>PRICING ／ 料金</span></div>
+      <h2 class="section-title reveal">
+        5万円で、<br>
+        <span class="accent">“使える顧客台帳”</span>まで整える。
+      </h2>
+    </div>
+
+    <div class="price-card reveal">
+      <div class="price-tag-label">カタカタ - EXCEL脱出パック ／ STANDARD</div>
+
+      <h3 class="price-headline">
+        <svg class="icon" style="color:var(--accent)"><use href="#i-package"/></svg>
+        "使える顧客台帳"セットアップ一式
+      </h3>
+
+      <div class="price-main">
+        <div class="price-amount">50,000</div>
+        <div class="price-yen">円<span class="tax">（税抜）</span></div>
+        <div class="price-note">／ 〜150件まで・標準1〜2シート対象</div>
+      </div>
+
+      <div class="price-rules">
+        <div class="price-rule">
+          <div class="price-rule-head">
+            <svg class="icon icon-sm"><use href="#i-coin"/></svg>
+            <span>RULE 01</span>
+          </div>
+          <div class="price-rule-value">
+            <span class="big">¥50,000</span><br>
+            150件までの基本料金
+          </div>
+        </div>
+        <div class="price-rule">
+          <div class="price-rule-head">
+            <svg class="icon icon-sm"><use href="#i-plus"/></svg>
+            <span>RULE 02</span>
+          </div>
+          <div class="price-rule-value">
+            <span class="big">+¥10,000</span><br>
+            150件超過ごとに加算
+          </div>
+        </div>
+        <div class="price-rule">
+          <div class="price-rule-head">
+            <svg class="icon icon-sm"><use href="#i-sheets"/></svg>
+            <span>RULE 03</span>
+          </div>
+          <div class="price-rule-value">
+            <span class="big">1〜2</span>シート<br>
+            標準対象範囲
+          </div>
+        </div>
+      </div>
+
+      <div class="price-foot">
+        <p>料金の基準は、整理後の顧客台帳に登録する顧客数です。</p>
+        <p>3シート以上の統合や、業務フロー設計が必要な場合は、最初に別見積もりとしてご案内します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FIT CHECK ============== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="num">05</span><span>FIT CHECK ／ 判定</span></div>
+      <h2 class="section-title reveal">
+        やることを絞るから、<br>
+        <span class="accent">5万円</span>で始められる。
+      </h2>
+      <p class="section-lede reveal">
+        カタカタ - Excel脱出パックは、顧客台帳の入口づくりに特化した定額パックです。<br>業務フローや自動化まで必要な場合は、別設計としてご案内します。
+      </p>
+    </div>
+
+    <div class="fit-grid reveal">
+      <div class="fit-col match">
+        <div class="fit-head">
+          <div>
+            <div class="fit-head-title">このパックで対応できるケース</div>
+          </div>
+          <div class="fit-head-icon"><svg class="icon icon-lg"><use href="#i-check-circle"/></svg></div>
+        </div>
+        <ul class="fit-list">
+          <li>顧客・取引先・案件などを<strong>50件以上</strong>Excelで管理している</li>
+          <li>更新する人が<strong>2人以上</strong>いて、最新版が混乱している</li>
+          <li>同じ情報が複数のシート/ファイルに散らばっている</li>
+          <li><strong>経営・現場・経理・営業</strong>で見たい角度が違う</li>
+          <li>まずは「使える台帳」が欲しい（業務全体の再設計までは不要）</li>
+          <li>従業員<strong>1〜30名規模</strong>・年商<strong>5,000万〜20億円</strong>程度</li>
+        </ul>
+      </div>
+
+      <div class="fit-col unmatch">
+        <div class="fit-head">
+          <div>
+            <div class="fit-head-title">別設計をご提案するケース</div>
+          </div>
+          <div class="fit-head-icon"><svg class="icon icon-lg"><use href="#i-info"/></svg></div>
+        </div>
+        <ul class="fit-list">
+          <li>顧客が10件以下、Excelで困っていない</li>
+          <li>3シート以上を横断する複雑な統合が必要</li>
+          <li>部署横断の権限設計・全社運用ルール策定が必要</li>
+          <li>外部システムとの自動連携・通知設計などが前提</li>
+          <li>コンサルティングを求めている（本パックは入口整備に特化）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== USE CASES ============== -->
+<section class="uc-section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="num">06</span><span>USE CASES ／ 業種を問いません</span></div>
+      <h2 class="section-title reveal">
+        Excelで「台帳」を抱える<br>
+        <span class="accent">すべての業種</span>へ。
+      </h2>
+      <p class="section-lede reveal">
+        顧客・取引先・案件・現場・会員・患者・物件・生徒。<br>
+        呼び方は違っても、「情報が増えるほど見えなくなる」構造は同じです。
+      </p>
+    </div>
+
+    <div class="uc-grid reveal">
+      <div class="uc-card">
+        <div class="uc-icon-wrap"><svg class="icon"><use href="#i-house"/></svg></div>
+        <div class="uc-industry">工務店・リフォーム</div>
+        <div class="uc-managed"><strong>顧客／現場／施工履歴</strong></div>
+      </div>
+      <div class="uc-card">
+        <div class="uc-icon-wrap"><svg class="icon"><use href="#i-building"/></svg></div>
+        <div class="uc-industry">不動産・賃貸仲介</div>
+        <div class="uc-managed"><strong>物件／オーナー／顧客</strong></div>
+      </div>
+      <div class="uc-card">
+        <div class="uc-icon-wrap"><svg class="icon"><use href="#i-scissors"/></svg></div>
+        <div class="uc-industry">美容室・サロン</div>
+        <div class="uc-managed"><strong>会員／来店履歴</strong></div>
+      </div>
+      <div class="uc-card">
+        <div class="uc-icon-wrap"><svg class="icon"><use href="#i-medical"/></svg></div>
+        <div class="uc-industry">整骨院・歯科</div>
+        <div class="uc-managed"><strong>患者／施術記録</strong></div>
+      </div>
+      <div class="uc-card">
+        <div class="uc-icon-wrap"><svg class="icon"><use href="#i-factory"/></svg></div>
+        <div class="uc-industry">製造業・町工場</div>
+        <div class="uc-managed"><strong>取引先／受注／仕入</strong></div>
+      </div>
+      <div class="uc-card">
+        <div class="uc-icon-wrap"><svg class="icon"><use href="#i-box"/></svg></div>
+        <div class="uc-industry">卸売・問屋業</div>
+        <div class="uc-managed"><strong>得意先／商品マスタ</strong></div>
+      </div>
+      <div class="uc-card">
+        <div class="uc-icon-wrap"><svg class="icon"><use href="#i-scale"/></svg></div>
+        <div class="uc-industry">士業（税理士・社労士）</div>
+        <div class="uc-managed"><strong>顧問先／案件</strong></div>
+      </div>
+      <div class="uc-card">
+        <div class="uc-icon-wrap"><svg class="icon"><use href="#i-cap"/></svg></div>
+        <div class="uc-industry">学習塾・スクール</div>
+        <div class="uc-managed"><strong>生徒／保護者／コース</strong></div>
+      </div>
+      <div class="uc-card">
+        <div class="uc-icon-wrap"><svg class="icon"><use href="#i-cup"/></svg></div>
+        <div class="uc-industry">飲食・小売</div>
+        <div class="uc-managed"><strong>取引先／仕入先／顧客</strong></div>
+      </div>
+      <div class="uc-card">
+        <div class="uc-icon-wrap"><svg class="icon"><use href="#i-truck"/></svg></div>
+        <div class="uc-industry">運送・建設業</div>
+        <div class="uc-managed"><strong>協力会社／案件／車両</strong></div>
+      </div>
+      <div class="uc-card">
+        <div class="uc-icon-wrap"><svg class="icon"><use href="#i-handshake"/></svg></div>
+        <div class="uc-industry">BtoBサービス業</div>
+        <div class="uc-managed"><strong>見込み客／既存顧客</strong></div>
+      </div>
+      <div class="uc-card">
+        <div class="uc-icon-wrap"><svg class="icon"><use href="#i-dots"/></svg></div>
+        <div class="uc-industry">その他</div>
+        <div class="uc-managed">「同じExcelを毎日開いている」<br>業務すべて</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PROCESS ============== -->
+<section class="process">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="num">07</span><span>PROCESS ／ 納品までの流れ</span></div>
+      <h2 class="section-title reveal">
+        ご相談から納品まで、<br>
+        最短<span class="accent">2週間</span>。
+      </h2>
+      <p class="section-lede reveal">
+        お預かりするのは、いま使っているExcel 1〜2枚と、ちょっとしたヒアリングだけ。事前準備は不要です。
+      </p>
+    </div>
+
+    <div class="process-grid reveal">
+      <div class="process-step">
+        <div class="process-num-wrap">
+          <div class="process-num"><svg class="icon"><use href="#i-chat"/></svg></div>
+        </div>
+        <h4 class="process-title">受付</h4>
+        <p class="process-body">お使いのExcelをお送りいただき、目的をヒアリングします。</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num-wrap">
+          <div class="process-num"><svg class="icon"><use href="#i-gear"/></svg></div>
+        </div>
+        <h4 class="process-title">設計</h4>
+        <p class="process-body">Excelの列を整理し、目的を叶える顧客台帳の設計をします。</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num-wrap">
+          <div class="process-num"><svg class="icon"><use href="#i-wand"/></svg></div>
+        </div>
+        <h4 class="process-title">整形</h4>
+        <p class="process-body">表記ゆれや選択肢を整え、入力しやすい形にします。</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num-wrap">
+          <div class="process-num"><svg class="icon"><use href="#i-trend"/></svg></div>
+        </div>
+        <h4 class="process-title">出力</h4>
+        <p class="process-body">判断用ビューと簡易ダッシュボードを作成します。</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num-wrap">
+          <div class="process-num"><svg class="icon"><use href="#i-package"/></svg></div>
+        </div>
+        <h4 class="process-title">納品</h4>
+        <p class="process-body">入力する場所・見る場所を整理し、すぐ使える状態でお渡しします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FAQ ============== -->
+<section class="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="num">08</span><span>FAQ ／ よくあるご質問</span></div>
+      <h2 class="section-title reveal">
+        ご相談前に、<br>
+        よく聞かれること。
+      </h2>
+    </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-q"><span class="q-mark">Q</span><span>Excelをそのまま渡すだけで大丈夫ですか？</span><span class="q-toggle"></span></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>はい、いまお使いのExcelをお送りいただくだけで結構です。整理は弊社で行います。事前にきれいに整える必要はありません。むしろ「ぐちゃぐちゃのまま」でお送りください。</p></div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="q-mark">Q</span><span>「マスタ」「ビュー」とは何ですか？</span><span class="q-toggle"></span></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>マスタは「すべての顧客情報をひとつに集めた台帳」、ビューは「その台帳を、見る人や目的ごとに切り替えた一覧画面」と理解いただければ大丈夫です。ご納品時に、お客さまの業務に沿った言葉で操作をご説明します。</p></div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="q-mark">Q</span><span>納品されたあと、入力は自分たちでやるんですか？</span><span class="q-toggle"></span></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>はい。Excel脱出パックは、顧客台帳を「使い始められる状態」に整えるサービスのため、日々の入力・更新はお客さま側で行っていただきます。入力作業そのものや、定例的な更新・整理まで任せたい場合は、運用伴走型の「<a href="https://kata2.axis-srs.co.jp/" target="_blank" rel="noopener noreferrer">カタカタ</a>」として別途ご相談いただけます。</p></div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="q-mark">Q</span><span>納期はどのくらいかかりますか？</span><span class="q-toggle"></span></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>規模により2～3週間が目安です。Excelをお送りいただいた時点で、具体的なスケジュールをご提示します。お急ぎの場合はご相談ください。</p></div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="q-mark">Q</span><span>顧客以外（取引先・案件・在庫など）でも使えますか？</span><span class="q-toggle"></span></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>はい、構造は同じなので「Excelで管理している台帳」であれば対応可能です。取引先台帳、案件台帳、現場管理、会員管理など、業種・用途を問いません。ご相談時にお使いのExcelを拝見して判断します。</p></div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span class="q-mark">Q</span><span>料金はあとから増えませんか？</span><span class="q-toggle"></span></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>増えません。基本5万円（〜150件）と、超過分の加算ルール（150件ごと+1万円）を最初からすべて公開しております。3シート以上の統合などパック範囲外の内容は、お見積り段階で別途明示します。</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== OUT OF SCOPE ============== 
+<section class="scope">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-eyebrow"><span class="num">09</span><span>OUT OF SCOPE ／ 対応範囲外について</span></div>
+      <h2 class="section-title reveal">
+        パッケージの<br>
+        <span class="accent">対応範囲外</span>について。
+      </h2>
+      <p class="section-lede reveal">
+        Excel脱出パックは「入口を整える」ことに特化した定額パッケージです。次の領域は本パックの対象外ですが、別途お見積りで対応可能です。
+      </p>
+    </div>
+
+    <div class="scope-grid reveal">
+      <div class="scope-card">
+        <div class="scope-icon-wrap"><svg class="icon"><use href="#i-gear"/></svg></div>
+        <div class="scope-content">
+          <div class="scope-card-head">
+            <div class="scope-card-title">業務プロセス全体の設計</div>
+            <span class="scope-tag">別途見積</span>
+          </div>
+          <p class="scope-body">月次・決算・請求などの業務フロー再設計、タスク管理の構築。</p>
+        </div>
+      </div>
+      <div class="scope-card">
+        <div class="scope-icon-wrap"><svg class="icon"><use href="#i-handshake"/></svg></div>
+        <div class="scope-content">
+          <div class="scope-card-head">
+            <div class="scope-card-title">部署横断の要件定義</div>
+            <span class="scope-tag">別途見積</span>
+          </div>
+          <p class="scope-body">全社運用ルール策定、権限設計、複数部署にまたがる調整。</p>
+        </div>
+      </div>
+      <div class="scope-card">
+        <div class="scope-icon-wrap"><svg class="icon"><use href="#i-sheets"/></svg></div>
+        <div class="scope-content">
+          <div class="scope-card-head">
+            <div class="scope-card-title">大規模な統合作業</div>
+            <span class="scope-tag">別途見積</span>
+          </div>
+          <p class="scope-body">3シート以上の統合、複数ファイル横断の大規模統合。</p>
+        </div>
+      </div>
+      <div class="scope-card">
+        <div class="scope-icon-wrap"><svg class="icon"><use href="#i-spark"/></svg></div>
+        <div class="scope-content">
+          <div class="scope-card-head">
+            <div class="scope-card-title">高度な自動化・外部連携</div>
+            <span class="scope-tag">別途見積</span>
+          </div>
+          <p class="scope-body">外部システム連携、ワークフロー、メール通知などの自動化設計。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="scope-foot reveal">
+      <svg class="icon"><use href="#i-info"/></svg>
+      <div><strong>定額の中で「やらない」だけで、「できない」ではありません。</strong>　範囲外の領域もご相談いただければ、必要な内容に絞ったお見積りをご提示します。</div>
+    </div>
+  </div>
+</section>
+-->
+<!-- ============== FINAL CTA ============== -->
+<section class="final-cta" id="cta">
+  <div class="wrap-narrow final-cta-content">
+    <h2 class="reveal">
+      Excelで限界を迎えた顧客管理を、<br>
+      5万円から<span class="accent">"判断できる台帳"</span>へ。
+    </h2>
+    <p class="final-cta-lede reveal">
+    </p>
+    <a href="https://forms.gle/W4mCE1EjGZKtVBMx6" target="_blank" rel="noopener noreferrer" class="btn-primary reveal">無料で相談してみる</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-row">
+      <div class="footer-brand">カタカタ - Excel脱出パック</div>
+      <div>© 2026 AXIS Inc. All Right Reserved.</div>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+
+</body>
+</html>
