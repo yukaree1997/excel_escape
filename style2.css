@@ -1003,3 +1003,12 @@
   display:block;
   flex-shrink:0;
 }
+
+.excel-tool{
+  min-height:auto !important;
+  height:auto !important;
+}
+
+.excel-tool section{
+  min-height:auto !important;
+}
